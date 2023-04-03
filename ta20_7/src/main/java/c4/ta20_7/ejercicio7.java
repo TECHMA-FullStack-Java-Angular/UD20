@@ -24,8 +24,6 @@ public class ejercicio7 extends JFrame {
 	JRadioButton rdbtnPesetasEuros = new JRadioButton();
 	ButtonGroup grupoMoneda = new ButtonGroup();
 
-
-
 	/**
 	 * Create the frame.
 	 */
@@ -39,39 +37,41 @@ public class ejercicio7 extends JFrame {
 		setVisible(true);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblCantidad = new JLabel("Cantidad a convertir");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCantidad.setBounds(10, 26, 197, 42);
 		contentPane.add(lblCantidad);
-		
+
 		cantidad = new JTextField();
 		cantidad.setBounds(205, 28, 96, 42);
 		contentPane.add(cantidad);
 		cantidad.setColumns(10);
 		
+
 		JLabel lblResultado = new JLabel("Resultado");
 		lblResultado.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblResultado.setBounds(116, 208, 117, 42);
 		contentPane.add(lblResultado);
-		
+
 		resultado = new JTextField();
 		resultado.setColumns(10);
 		resultado.setBounds(243, 210, 96, 42);
 		contentPane.add(resultado);
 		
+
 		rdbtnEurosPesetas = new JRadioButton("Euros a Pesetas");
 		rdbtnEurosPesetas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnEurosPesetas.setBounds(40, 98, 179, 23);
 		grupoMoneda.add(rdbtnEurosPesetas);
 		contentPane.add(rdbtnEurosPesetas);
-		
+
 		rdbtnPesetasEuros = new JRadioButton("Pesetas a Euros");
 		rdbtnPesetasEuros.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		rdbtnPesetasEuros.setBounds(255, 98, 152, 23);
 		grupoMoneda.add(rdbtnPesetasEuros);
 		contentPane.add(rdbtnPesetasEuros);
-		
+
 		JButton btnCalcular = new JButton("Calcular");
 		btnCalcular.addActionListener(aL);
 		btnCalcular.setBackground(new Color(216, 207, 220));
@@ -79,23 +79,20 @@ public class ejercicio7 extends JFrame {
 		btnCalcular.setBounds(155, 149, 117, 31);
 		contentPane.add(btnCalcular);
 	}
-	
+
 	ActionListener aL = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			 double cantidadAConvertir = Double.parseDouble(cantidad.getText());
-			    double resultadoConversion = 0.0;
-			    if (rdbtnEurosPesetas.isSelected()) {
-			        resultadoConversion = cantidadAConvertir * 166.386; // 1 euro = 166.386 pesetas
-			        resultado.setText(String.format("%.2f", resultadoConversion));
-			    } else if (rdbtnPesetasEuros.isSelected()) {
-			        resultadoConversion = cantidadAConvertir / 166.386; // 1 peseta = 0.006 euros
-			        resultado.setText(String.format("%.2f", resultadoConversion));
-			    }
-			    
-			
-			
+			double cantidadAConvertir = Double.parseDouble(cantidad.getText());
+			double resultadoConversion = 0.0;
+			if (rdbtnEurosPesetas.isSelected()) {
+				resultadoConversion = cantidadAConvertir * 166.386; // 1 euro = 166.386 pesetas
+				resultado.setText(String.format("%.2f", resultadoConversion));
+			} else if (rdbtnPesetasEuros.isSelected()) {
+				resultadoConversion = cantidadAConvertir / 166.386; // 1 peseta = 0.006 euros
+				resultado.setText(String.format("%.2f", resultadoConversion));
+			}
+
 		}
 	};
-	
-	
+
 }
