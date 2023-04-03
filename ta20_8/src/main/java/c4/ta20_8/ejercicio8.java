@@ -12,6 +12,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -39,7 +40,7 @@ public class ejercicio8 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setVisible(true);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -90,11 +91,13 @@ public class ejercicio8 extends JFrame {
 		btnCalcular.addKeyListener(kA);
 		btnBorrar.addActionListener(bL);
 		
+		setVisible(true);
 		
 	}
 
 	ActionListener aL = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
+			try {
 			double cantidadAConvertir = Double.parseDouble(cantidad.getText());
 			double resultadoConversion = 0.0;
 			if (rdbtnEurosPesetas.isSelected()) {
@@ -103,6 +106,9 @@ public class ejercicio8 extends JFrame {
 			} else if (rdbtnPesetasEuros.isSelected()) {
 				resultadoConversion = cantidadAConvertir / 166.386; // 1 peseta = 0.006 euros
 				resultado.setText(String.format("%.2f", resultadoConversion));
+			}
+			}catch (NumberFormatException eX) {
+				JOptionPane.showMessageDialog(null, "No has introducido un valor numerico: " + eX.getMessage());
 			}
 
 		}
