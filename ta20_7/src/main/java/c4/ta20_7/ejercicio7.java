@@ -34,7 +34,7 @@ public class ejercicio7 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setVisible(true);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -78,6 +78,8 @@ public class ejercicio7 extends JFrame {
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnCalcular.setBounds(155, 149, 117, 31);
 		contentPane.add(btnCalcular);
+		
+		setVisible(true);
 	}
 
 	ActionListener aL = new ActionListener() {

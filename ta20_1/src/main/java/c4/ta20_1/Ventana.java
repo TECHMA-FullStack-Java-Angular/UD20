@@ -34,11 +34,13 @@ public class Ventana extends JFrame {
         getContentPane().add(etiqueta);
 
         setTitle("Ventana redimensionable");
-        setResizable(true);
+        
         setBounds(100, 100, 400, 300);
 
         JRootPane rootPane = SwingUtilities.getRootPane(etiqueta);
         rootPane.setWindowDecorationStyle(JRootPane.FRAME);
+        
+        setResizable(true);
     
 
 	}

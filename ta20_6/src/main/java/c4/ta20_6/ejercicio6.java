@@ -41,7 +41,7 @@ public class ejercicio6 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setVisible(true);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -83,6 +83,8 @@ public class ejercicio6 extends JFrame {
 		etiquetaIMC.setFont(new Font("Tahoma", Font.BOLD, 16));
 		etiquetaIMC.setBounds(242, 165, 49, 14);
 		contentPane.add(etiquetaIMC);
+		
+		setVisible(true);
 	}
 
 	ActionListener aL = new ActionListener() {

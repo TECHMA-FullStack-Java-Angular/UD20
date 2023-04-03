@@ -47,7 +47,7 @@ public class ejercicio3 extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setVisible(true);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -69,6 +69,8 @@ public class ejercicio3 extends JFrame {
 		btn2.setBackground(new Color(194, 180, 205));
 		btn2.setBounds(348, 72, 127, 42);
 		contentPane.add(btn2);
+		
+		setVisible(true);
 	}
 	
 	//creamos el listener

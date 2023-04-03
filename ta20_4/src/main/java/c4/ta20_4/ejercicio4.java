@@ -31,7 +31,7 @@ public class ejercicio4 extends JFrame implements WindowListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		setVisible(true);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -45,6 +45,8 @@ public class ejercicio4 extends JFrame implements WindowListener {
 		contentPane.add(evento);
 
 		addWindowListener(this);
+		
+		setVisible(true);
 	}
 
 	// Implement WindowListener methods
