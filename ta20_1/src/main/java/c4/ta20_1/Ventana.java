@@ -14,18 +14,12 @@ import javax.swing.SwingUtilities;
 
 public class Ventana extends JFrame {
 
-	private JPanel contentPane;
-	 private JLabel etiqueta;
+	private JLabel etiqueta;
 	/**
 	 * @wbp.nonvisual location=351,29
 	 */
 
 
-	
-
-	/**
-	 * Create the frame.
-	 */
 	public Ventana() {
 		
 		initComponents();
@@ -46,31 +40,7 @@ public class Ventana extends JFrame {
         JRootPane rootPane = SwingUtilities.getRootPane(etiqueta);
         rootPane.setWindowDecorationStyle(JRootPane.FRAME);
     
-		
-		
-		
-		
-//		setTitle("Control básico");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		setBounds(100, 100, 450, 300);
-//		contentPane = new JPanel();
-//		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		
-//		
-//
-//		setVisible(true);
-//		setContentPane(contentPane);
-//		contentPane.setLayout(null);
-//		
-//		JLabel lblNewLabel = new JLabel("¡Soy redimensionable!");
-//		
-//		getContentPane().add(lblNewLabel);
-//		setTitle("Etiqueta");
-//		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-//		lblNewLabel.setBounds(91, 90, 275, 36);
-//		setResizable(true);
-//		contentPane.add(lblNewLabel);
+
 	}
 
 }
