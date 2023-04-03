@@ -27,6 +27,7 @@ public class ejercicio8 extends JFrame {
 	JRadioButton rdbtnPesetasEuros = new JRadioButton();
 	ButtonGroup grupoMoneda = new ButtonGroup();
 	JButton btnCalcular = new JButton();
+	private JButton btnBorrar;
 
 	/**
 	 * Create the frame.
@@ -34,7 +35,7 @@ public class ejercicio8 extends JFrame {
 	public ejercicio8() {
 		setTitle("Calculadora de cambio de monedas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 328);
+		setBounds(100, 100, 450, 391);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -81,7 +82,15 @@ public class ejercicio8 extends JFrame {
 		btnCalcular.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnCalcular.setBounds(155, 149, 117, 31);
 		contentPane.add(btnCalcular);
+		
+		btnBorrar = new JButton("Borrar");
+		btnBorrar.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnBorrar.setBounds(59, 306, 89, 23);
+		contentPane.add(btnBorrar);
 		btnCalcular.addKeyListener(kA);
+		btnBorrar.addActionListener(bL);
+		
+		
 	}
 
 	ActionListener aL = new ActionListener() {
@@ -105,6 +114,7 @@ public class ejercicio8 extends JFrame {
 	        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 	            btnCalcular.doClick();
 	            
+	            
 	        } else if (e.getKeyCode() == KeyEvent.VK_TAB && e.getModifiers() == KeyEvent.SHIFT_DOWN_MASK) {
 	            // Selección del radio button "Pesetas a Euros" con Shift + Tab
 	            rdbtnPesetasEuros.setSelected(true);
@@ -112,8 +122,20 @@ public class ejercicio8 extends JFrame {
 	            // Selección del radio button "Euros a Pesetas" con Tab
 	            rdbtnEurosPesetas.setSelected(true);
 	        
+	    }else if(e.getKeyCode() == KeyEvent.VK_CLEAR) {
+	    	btnBorrar.doClick();
 	    }
 	    }
 	};
+	
+	ActionListener bL = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			cantidad.setText("");
+			resultado.setText("");
+			rdbtnPesetasEuros.setSelected(false);
+			rdbtnEurosPesetas.setSelected(false);
+		}
+	};
+	
 
 }
