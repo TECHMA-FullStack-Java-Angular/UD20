@@ -1,12 +1,10 @@
 package c4.ta20_2;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ejercicio1.Ejercicio1Info;
+
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -17,6 +15,10 @@ import java.awt.event.ActionEvent;
 
 public class Ejercicio2 extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private String textoUser = "";
 	private JLabel lblNewLabel = new JLabel();
