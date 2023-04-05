@@ -45,7 +45,7 @@ public class Ejercicio9 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		lblIntentos = new JLabel("Intentos: "+intentos);
+		lblIntentos = new JLabel("Intentos: " + intentos);
 		lblIntentos.setFont(new Font("Calibri", Font.BOLD, 16));
 		lblIntentos.setBounds(34, 458, 130, 33);
 		contentPane.add(lblIntentos);
@@ -55,7 +55,6 @@ public class Ejercicio9 extends JFrame {
 		listaBotones = new ArrayList<JToggleButton>();
 		selectedButtons = 0;
 		parejasEncontradas = 0;
-		
 
 		// crear cartas
 		int px = 60;
@@ -99,7 +98,11 @@ public class Ejercicio9 extends JFrame {
 		// Barajar los colores
 		Collections.shuffle(colores);
 
-		
+		//Asigno colores a los botones y quito visibilidad de background
+		for (int i = 0; i < listaBotones.size(); i++) {
+			listaBotones.get(i).setBackground(colores.get(i));
+			listaBotones.get(i).setOpaque(false);
+		}
 
 		setVisible(true);
 	}
@@ -108,88 +111,66 @@ public class Ejercicio9 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			b = (JToggleButton) e.getSource();
 
-			// Establece colores a las cartas //TODO cada vez que clica boton cambia color. 
-			//no guarda el color asignado
-			//TODO se acaban los colores cuando pasan muchos intentos
-		
-			for (int i = 0; i < listaBotones.size(); ) {
-				if(b.getBackground()==Color.LIGHT_GRAY) {
-					b.setBackground(colores.get(i));
-				}else {
-				b.setOpaque(true);
-				}
-				b.setSelected(false);
-				colores.remove(i);
-				break;
+			//hago visible el background 
+			b.setOpaque(true);
+			b.setSelected(false);
+
+			selectedButtons++;
+			if (selectedButtons < 2) {
+				botonSeleccionado1 = b;
 			}
 
-				selectedButtons++;
-				if (selectedButtons<2) {
-					botonSeleccionado1=b;
-				}
-				
-				if (selectedButtons ==2) {
-					botonSeleccionado2=b;
-					intentos++;
-					//Desabilita los botones mientras los sseleccionados estan abiertos
-					for(int i=0; i<listaBotones.size();i++) {
-						listaBotones.get(i).setEnabled(false);
-					}
-					
-					if (botonSeleccionado1.getBackground().equals(botonSeleccionado2
-							.getBackground())) {
-						botonSeleccionado1.setEnabled(false);
-						botonSeleccionado2.setEnabled(false);
-						botonSeleccionado1.setText("Match on "+Integer.toString(intentos)+" intentos");
-						botonSeleccionado2.setText("Match on "+Integer.toString(intentos)+" intentos");
-						
-						//Intento de eliminar boton de lista para no volver asignar color
-//						botonesUsados.add(botonSeleccionado1);
-//						botonesUsados.add(botonSeleccionado2);
-//						listaBotones.remove(botonSeleccionado1);
-//						listaBotones.remove(botonSeleccionado2);
-						
-						botonSeleccionado1=null;
-						botonSeleccionado2=null;
-						selectedButtons=0;
-						parejasEncontradas++;
-						//Desabilita los botones mientras los sseleccionados estan abiertos
-						for(int i=0; i<listaBotones.size();i++) {
-							listaBotones.get(i).setEnabled(true);
-						}
-						
-						if (parejasEncontradas == 8) {
-							System.out.println("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
-						}
-					} else {
-						
-						timer.schedule(new TimerTask() {
-						    @Override
-						    public void run() {
-						        botonSeleccionado1.setSelected(false);
-						        botonSeleccionado2.setSelected(false);
-						        botonSeleccionado1.setOpaque(false);
-						        botonSeleccionado2.setOpaque(false);
-//						        botonSeleccionado1.setBackground(Color.LIGHT_GRAY);
-//						        botonSeleccionado2.setBackground(Color.LIGHT_GRAY);
-						        botonSeleccionado1.setEnabled(true);
-						        botonSeleccionado2.setEnabled(true);
-						        botonSeleccionado1 = null;
-						        botonSeleccionado2 = null;
-						        selectedButtons = 0;
-						      //Desabilita los botones mientras los sseleccionados estan abiertos
-						        for(int i=0; i<listaBotones.size();i++) {
-									listaBotones.get(i).setEnabled(true);
-								}
-						    }
-						}, 3000);
-						
-					
-
-					}
+			//TODO no dejar seleccionar dos veces el mismo boton
+			if (selectedButtons == 2) {
+				botonSeleccionado2 = b;
+				intentos++;
+				// Desabilita los botones mientras los seleccionados estan abiertos
+				for (int i = 0; i < listaBotones.size(); i++) {
+					listaBotones.get(i).setEnabled(false);
 				}
 
-			
+				if (botonSeleccionado1.getBackground().equals(botonSeleccionado2.getBackground())) {
+					botonSeleccionado1.setEnabled(false);
+					botonSeleccionado2.setEnabled(false);
+					botonSeleccionado1.setText("Match on " + Integer.toString(intentos) + " intentos");
+					botonSeleccionado2.setText("Match on " + Integer.toString(intentos) + " intentos");
+
+					botonSeleccionado1 = null;
+					botonSeleccionado2 = null;
+					selectedButtons = 0;
+					parejasEncontradas++;
+					// Desabilita los botones mientras los sseleccionados estan abiertos
+					for (int i = 0; i < listaBotones.size(); i++) {
+						listaBotones.get(i).setEnabled(true);
+					}
+
+					if (parejasEncontradas == 8) {
+						System.out.println("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
+					}
+				} else {
+
+					timer.schedule(new TimerTask() {
+						@Override
+						public void run() {
+							botonSeleccionado1.setSelected(false);
+							botonSeleccionado2.setSelected(false);
+							botonSeleccionado1.setOpaque(false);
+							botonSeleccionado2.setOpaque(false);
+
+							botonSeleccionado1.setEnabled(true);
+							botonSeleccionado2.setEnabled(true);
+							botonSeleccionado1 = null;
+							botonSeleccionado2 = null;
+							selectedButtons = 0;
+							// Desabilita los botones mientras los sseleccionados estan abiertos
+							for (int i = 0; i < listaBotones.size(); i++) {
+								listaBotones.get(i).setEnabled(true);
+							}
+						}
+					}, 3000);
+
+				}
+			}
 
 		}
 	};
