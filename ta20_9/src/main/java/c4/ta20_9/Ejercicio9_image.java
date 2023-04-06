@@ -173,8 +173,9 @@ public class Ejercicio9_image extends JFrame {
 			
 			//Selecciono el selectedIcon como Icon
 			b.setIcon(b.getSelectedIcon());
-			b.setSelected(true);//comentar para probar el true
-			b.setEnabled(false);//si marco setEnabled(true) se ve mejor el icono. Intente editar el metodo pero no lo logre
+			b.setSelected(true);
+			b.setEnabled(false);//comentar para probar el true
+//			b.setEnabled(true);//si marco setEnabled(true) se ve mejor el icono. Intente editar el metodo pero no lo logre
 
 //			b.setEnabled(true);//descomentar para probar
 			//añado seleccion al marcador
@@ -220,7 +221,10 @@ public class Ejercicio9_image extends JFrame {
 					selectedButtons = 0;
 					parejasEncontradas++;
 					
-
+					// habilita los botones para volver a seleccionar
+					for (int i = 0; i < listaBotones.size(); i++) {
+						listaBotones.get(i).setEnabled(true);
+					}
 
 					//Mensaje de felicitacion en caso encuentre todos pares
 					if (parejasEncontradas == 8) {
@@ -245,7 +249,7 @@ public class Ejercicio9_image extends JFrame {
 							botonSeleccionado2 = null;
 							selectedButtons = 0;
 							
-							// habilita los botones para volver a iniciar partida
+							// habilita los botones para volver a seleccionar
 							for (int i = 0; i < listaBotones.size(); i++) {
 								listaBotones.get(i).setEnabled(true);
 							}

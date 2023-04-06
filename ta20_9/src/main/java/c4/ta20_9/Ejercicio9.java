@@ -172,7 +172,10 @@ public class Ejercicio9 extends JFrame {
 					selectedButtons = 0;
 					parejasEncontradas++;
 					
-
+					// habilita los botones para volver a seleccionar
+					for (int i = 0; i < listaBotones.size(); i++) {
+						listaBotones.get(i).setEnabled(true);
+					}
 
 					//Mensaje en caso encontrar todas parejas
 					if (parejasEncontradas == 8) {
