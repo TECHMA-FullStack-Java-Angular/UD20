@@ -11,6 +11,7 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -19,6 +20,7 @@ import javax.swing.JToggleButton;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
@@ -28,7 +30,8 @@ public class Ejercicio9 extends JFrame {
 	private int selectedButtons;
 	private ArrayList<Color> colores;
 	private ArrayList<JToggleButton> listaBotones;
-	private ArrayList<JToggleButton> botonesUsados;
+
+	//ArrayList<Icon> iconList = new ArrayList<Icon>();
 	private JToggleButton botonSeleccionado1 = new JToggleButton();
 	private JToggleButton botonSeleccionado2 = new JToggleButton();
 	private int parejasEncontradas;
@@ -57,7 +60,7 @@ public class Ejercicio9 extends JFrame {
 
 		lblIntentos = new JLabel("Intentos: " + intentos);
 		lblIntentos.setFont(new Font("Calibri", Font.BOLD, 16));
-		lblIntentos.setBounds(34, 458, 130, 33);
+		lblIntentos.setBounds(34, 458, 404, 33);
 		contentPane.add(lblIntentos);
 
 		JLabel lblNewLabel = new JLabel("Encontra las parejas de colores");
@@ -86,6 +89,7 @@ public class Ejercicio9 extends JFrame {
 				cartas[j][i].addActionListener(aL);
 				cartas[j][i].setBackground(Color.lightGray);
 				cartas[j][i].setBorder(blackBorder);
+				
 
 				px += 95;
 			}
@@ -114,11 +118,32 @@ public class Ejercicio9 extends JFrame {
 
 		// Barajar los colores
 		Collections.shuffle(colores);
+		
+		//Añadir icono a los botones
+//		iconList = new ArrayList<Icon>();
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/binoculars.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/for-you.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/idea.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/user-female.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/hand-cursor.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/icons8-cup.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/key.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/music.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/binoculars.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/for-you.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/idea.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/user-female.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/hand-cursor.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/icons8-cup.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/key.png"));
+//		iconList.add(new ImageIcon("https://img.icons8.com/arcade/64/null/music.png"));
 
 		// Asigno colores a los botones y quito visibilidad de background
 		for (int i = 0; i < listaBotones.size(); i++) {
 			listaBotones.get(i).setBackground(colores.get(i));
 			listaBotones.get(i).setOpaque(false);
+			
+//			listaBotones.get(i).setIcon(iconList.get(i));
 		}
 
 		setVisible(true);
@@ -131,14 +156,16 @@ public class Ejercicio9 extends JFrame {
 			// hago visible el background
 			b.setOpaque(true);
 			b.setSelected(false);
-
+			
+			
 			selectedButtons++;
 			if (selectedButtons < 2) {
 				botonSeleccionado1 = b;
+				botonSeleccionado1.setEnabled(false);
 			}
 
 			// TODO no dejar seleccionar dos veces el mismo boton
-			if (selectedButtons == 2) {
+			if (selectedButtons == 2 ) {
 				botonSeleccionado2 = b;
 				intentos++;
 				lblIntentos.setText("Intentos: " + intentos);
@@ -148,7 +175,7 @@ public class Ejercicio9 extends JFrame {
 				}
 
 				if (botonSeleccionado1.getBackground().equals(botonSeleccionado2.getBackground())) {
-					botonSeleccionado1.setEnabled(false);
+					
 					botonSeleccionado2.setEnabled(false);
 
 //					botonSeleccionado1.setText("¡Match!");
@@ -169,10 +196,12 @@ public class Ejercicio9 extends JFrame {
 					}
 
 					if (parejasEncontradas == 8) {
-						System.out.println("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
+						lblIntentos.setText("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
+						JOptionPane.showMessageDialog(rootPane, "¡Enhorabuena!");
 					}
 				} else {
 
+					
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
@@ -194,6 +223,7 @@ public class Ejercicio9 extends JFrame {
 					}, 1500);
 
 				}
+				
 			}
 
 		}
