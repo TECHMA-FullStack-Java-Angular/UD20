@@ -12,10 +12,15 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JToggleButton;
 import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class Ejercicio9 extends JFrame {
 
@@ -33,13 +38,18 @@ public class Ejercicio9 extends JFrame {
 	private JLabel lblIntentos = new JLabel();
 	JToggleButton[][] cartas = new JToggleButton[4][4];
 
+	// Crear el borde
+	Border blackBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.GRAY);
+
 	/**
 	 * Create the frame.
 	 */
 	public Ejercicio9() {
+		setTitle("Memory Game");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 515, 682);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(232, 232, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -49,6 +59,12 @@ public class Ejercicio9 extends JFrame {
 		lblIntentos.setFont(new Font("Calibri", Font.BOLD, 16));
 		lblIntentos.setBounds(34, 458, 130, 33);
 		contentPane.add(lblIntentos);
+
+		JLabel lblNewLabel = new JLabel("Encontra las parejas de colores");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel.setBounds(80, 30, 346, 14);
+		contentPane.add(lblNewLabel);
 
 		// Inicializar las variables
 		colores = new ArrayList<Color>();
@@ -69,6 +85,7 @@ public class Ejercicio9 extends JFrame {
 				cartas[j][i].setEnabled(true);
 				cartas[j][i].addActionListener(aL);
 				cartas[j][i].setBackground(Color.lightGray);
+				cartas[j][i].setBorder(blackBorder);
 
 				px += 95;
 			}
@@ -98,7 +115,7 @@ public class Ejercicio9 extends JFrame {
 		// Barajar los colores
 		Collections.shuffle(colores);
 
-		//Asigno colores a los botones y quito visibilidad de background
+		// Asigno colores a los botones y quito visibilidad de background
 		for (int i = 0; i < listaBotones.size(); i++) {
 			listaBotones.get(i).setBackground(colores.get(i));
 			listaBotones.get(i).setOpaque(false);
@@ -111,7 +128,7 @@ public class Ejercicio9 extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			b = (JToggleButton) e.getSource();
 
-			//hago visible el background 
+			// hago visible el background
 			b.setOpaque(true);
 			b.setSelected(false);
 
@@ -120,10 +137,11 @@ public class Ejercicio9 extends JFrame {
 				botonSeleccionado1 = b;
 			}
 
-			//TODO no dejar seleccionar dos veces el mismo boton
+			// TODO no dejar seleccionar dos veces el mismo boton
 			if (selectedButtons == 2) {
 				botonSeleccionado2 = b;
 				intentos++;
+				lblIntentos.setText("Intentos: " + intentos);
 				// Desabilita los botones mientras los seleccionados estan abiertos
 				for (int i = 0; i < listaBotones.size(); i++) {
 					listaBotones.get(i).setEnabled(false);
@@ -132,14 +150,20 @@ public class Ejercicio9 extends JFrame {
 				if (botonSeleccionado1.getBackground().equals(botonSeleccionado2.getBackground())) {
 					botonSeleccionado1.setEnabled(false);
 					botonSeleccionado2.setEnabled(false);
-					botonSeleccionado1.setText("Match on " + Integer.toString(intentos) + " intentos");
-					botonSeleccionado2.setText("Match on " + Integer.toString(intentos) + " intentos");
+
+//					botonSeleccionado1.setText("¡Match!");
+//					botonSeleccionado2.setText("¡Match!");
+
+					botonSeleccionado1.setBorder(null);
+					botonSeleccionado2.setBorder(null);
+					botonSeleccionado1.setOpaque(false);
+					botonSeleccionado2.setOpaque(false);
 
 					botonSeleccionado1 = null;
 					botonSeleccionado2 = null;
 					selectedButtons = 0;
 					parejasEncontradas++;
-					// Desabilita los botones mientras los sseleccionados estan abiertos
+					// Desabilita los botones mientras los seleccionados estan abiertos
 					for (int i = 0; i < listaBotones.size(); i++) {
 						listaBotones.get(i).setEnabled(true);
 					}
@@ -167,7 +191,7 @@ public class Ejercicio9 extends JFrame {
 								listaBotones.get(i).setEnabled(true);
 							}
 						}
-					}, 3000);
+					}, 1500);
 
 				}
 			}
