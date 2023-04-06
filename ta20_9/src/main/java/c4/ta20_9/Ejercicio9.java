@@ -34,8 +34,6 @@ public class Ejercicio9 extends JFrame {
 	private ArrayList<Color> colores;
 	private ArrayList<JToggleButton> listaBotones;
 
-
-    
 	private JToggleButton botonSeleccionado1 = new JToggleButton();
 	private JToggleButton botonSeleccionado2 = new JToggleButton();
 	private int parejasEncontradas;
@@ -44,9 +42,6 @@ public class Ejercicio9 extends JFrame {
 	private JToggleButton b;
 	private JLabel lblIntentos = new JLabel();
 	JToggleButton[][] cartas = new JToggleButton[4][4];
-	
-
-	
 
 	// Crear el borde
 	Border blackBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.GRAY);
@@ -96,8 +91,6 @@ public class Ejercicio9 extends JFrame {
 				cartas[j][i].addActionListener(aL);
 				cartas[j][i].setBackground(Color.lightGray);
 				cartas[j][i].setBorder(blackBorder);
-				
-				
 
 				px += 95;
 			}
@@ -126,20 +119,15 @@ public class Ejercicio9 extends JFrame {
 
 		// Barajar los colores
 		Collections.shuffle(colores);
-		
-		
 
+		// Asigno colores a los botones y quito visibilidad de background
+		//he optado por usar opaque(false) para ocultar el color del backgroun
 		
-
-
-		// Asigno colores o iconos a los botones y quito visibilidad de background si son colores
 		for (int i = 0; i < listaBotones.size(); i++) {
 			listaBotones.get(i).setBackground(colores.get(i));
-		
-			listaBotones.get(i).setOpaque(false);//si es colores
 
-	
-			
+			listaBotones.get(i).setOpaque(false);
+
 		}
 
 		setVisible(true);
@@ -152,16 +140,15 @@ public class Ejercicio9 extends JFrame {
 			// hago visible el background
 			b.setOpaque(true);
 			b.setSelected(false);
-			
-			
+
 			selectedButtons++;
 			if (selectedButtons < 2) {
 				botonSeleccionado1 = b;
 				botonSeleccionado1.setEnabled(false);
 			}
 
-			// TODO no dejar seleccionar dos veces el mismo boton
-			if (selectedButtons == 2 ) {
+			
+			if (selectedButtons == 2) {
 				botonSeleccionado2 = b;
 				intentos++;
 				lblIntentos.setText("Intentos: " + intentos);
@@ -170,34 +157,32 @@ public class Ejercicio9 extends JFrame {
 					listaBotones.get(i).setEnabled(false);
 				}
 
+				//si son parejas, la ponemos translucida y eliminamos el borde para hacer efecto eliminado
 				if (botonSeleccionado1.getBackground().equals(botonSeleccionado2.getBackground())) {
-					
+
 					botonSeleccionado2.setEnabled(false);
-
-//					botonSeleccionado1.setText("¡Match!");
-//					botonSeleccionado2.setText("¡Match!");
-
 					botonSeleccionado1.setBorder(null);
 					botonSeleccionado2.setBorder(null);
 					botonSeleccionado1.setOpaque(false);
 					botonSeleccionado2.setOpaque(false);
 
+					//reseteamos variables y añadimos pareja encontrada al contador
 					botonSeleccionado1 = null;
 					botonSeleccionado2 = null;
 					selectedButtons = 0;
 					parejasEncontradas++;
-					// Desabilita los botones mientras los seleccionados estan abiertos
-					for (int i = 0; i < listaBotones.size(); i++) {
-						listaBotones.get(i).setEnabled(true);
-					}
+					
 
+
+					//Mensaje en caso encontrar todas parejas
 					if (parejasEncontradas == 8) {
 						lblIntentos.setText("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
 						JOptionPane.showMessageDialog(rootPane, "¡Enhorabuena!");
 					}
 				} else {
 
-					
+					//si no son parejas, pongo un timer para que el jugador pueda memorizarlas y vuelvo 
+					// deseleccionar, y resetear variables, vulevo a opaque(false)
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
@@ -211,7 +196,7 @@ public class Ejercicio9 extends JFrame {
 							botonSeleccionado1 = null;
 							botonSeleccionado2 = null;
 							selectedButtons = 0;
-							// Desabilita los botones mientras los sseleccionados estan abiertos
+							// Habilita los botones para nueva seleccion
 							for (int i = 0; i < listaBotones.size(); i++) {
 								listaBotones.get(i).setEnabled(true);
 							}
@@ -219,7 +204,7 @@ public class Ejercicio9 extends JFrame {
 					}, 1500);
 
 				}
-				
+
 			}
 
 		}

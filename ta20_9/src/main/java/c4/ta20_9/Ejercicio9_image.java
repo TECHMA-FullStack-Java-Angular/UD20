@@ -35,7 +35,6 @@ public class Ejercicio9_image extends JFrame {
 	private int selectedButtons;
 
 	private ArrayList<JToggleButton> listaBotones;
-	
 
 	ArrayList<Icon> iconList = new ArrayList<Icon>();
 	ArrayList<Icon> iconListDoble = new ArrayList<Icon>();
@@ -104,8 +103,6 @@ public class Ejercicio9_image extends JFrame {
 				listaBotones.add(cartas[j][i]);
 				cartas[j][i].setEnabled(true);
 				cartas[j][i].addActionListener(aL);
-
-//				cartas[j][i].setBackground(Color.lightGray);
 				cartas[j][i].setBorder(blackBorder);
 
 				px += 95;
@@ -154,11 +151,12 @@ public class Ejercicio9_image extends JFrame {
 
 		// Mezclo los iconos
 		Collections.shuffle(iconListDoble);
+		
 
+		//Añado los iconos como SelectedIcon
 		for (int i = 0; i < iconListDoble.size(); i++) {
 			listaBotones.get(i).setSelectedIcon(iconListDoble.get(i));
-
-//		
+	
 		}
 
 		setVisible(true);
@@ -169,31 +167,34 @@ public class Ejercicio9_image extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 
 			b = (JToggleButton) e.getSource();
-
+			
+			//TODO quedo pendiente lograr sobrescribir el metodo setEnabled para que no cambie 
+			//el color y mantenga el icono bien visible
+			
+			//Selecciono el selectedIcon como Icon
 			b.setIcon(b.getSelectedIcon());
-			b.setSelected(true);
-			b.setEnabled(true);
-			b.setOpaque(false);
+			b.setSelected(true);//comentar para probar el true
+			b.setEnabled(false);//si marco setEnabled(true) se ve mejor el icono. Intente editar el metodo pero no lo logre
 
+//			b.setEnabled(true);//descomentar para probar
+			//añado seleccion al marcador
 			selectedButtons++;
+			
+			
 			if (selectedButtons < 2) {
-//			if(botonSeleccionado1 != b) {
-//				selectedButtons--;
-//				
-//			}else {
 				botonSeleccionado1 = b;
-
-//			}
-
 			}
 
+			//guardamos el segundo boton seleccionado, contamos el intento y reflejamos en pantalla
 			if (selectedButtons == 2) {
 				botonSeleccionado2 = b;
-				botonSeleccionado2.setEnabled(true);
+				botonSeleccionado2.setEnabled(false);//comentar para probar el true
+//				botonSeleccionado2.setEnabled(true);//descomentar para probar
 				intentos++;
 				lblIntentos.setText("Intentos: " + intentos);
 
-				// Desabilita los botones mientras los seleccionados estan abiertos
+				// Desabilita los botones mientras los seleccionados estan abiertos; he puesto para no desabilitar los botones 
+				//seleccionados para ser más visible en caso de no haber puesto el enabled(true)
 				for (int i = 0; i < listaBotones.size(); i++) {
 					if (listaBotones.get(i) != botonSeleccionado1 && listaBotones.get(i) != botonSeleccionado2) {
 						listaBotones.get(i).setEnabled(false);
@@ -201,27 +202,35 @@ public class Ejercicio9_image extends JFrame {
 
 				}
 
+				//si son parejas, eliminamos el icono y el borde para hacer efecto eliminado
 				if (botonSeleccionado1.getIcon() == botonSeleccionado2.getIcon()) {
 
-					botonSeleccionado2.setOpaque(false);
+					botonSeleccionado1.setEnabled(false);
+					botonSeleccionado2.setEnabled(false);
+					botonSeleccionado1.setIcon(null);
+					botonSeleccionado2.setIcon(null);
+
 					botonSeleccionado1.setBorder(null);
 					botonSeleccionado2.setBorder(null);
+					;
 
+					//reseteamos botones y sumamos la pareja encontrada
 					botonSeleccionado1 = null;
 					botonSeleccionado2 = null;
 					selectedButtons = 0;
 					parejasEncontradas++;
-					// Desabilita los botones mientras los seleccionados estan abiertos
-					for (int i = 0; i < listaBotones.size(); i++) {
-						listaBotones.get(i).setEnabled(true);
-					}
+					
 
+
+					//Mensaje de felicitacion en caso encuentre todos pares
 					if (parejasEncontradas == 8) {
 						lblIntentos.setText("¡Felicidades! ¡Ganaste en " + intentos + " intentos!");
 						JOptionPane.showMessageDialog(rootPane, "¡Enhorabuena!");
 					}
 				} else {
 
+					//si no son parejas, pongo un timer para que el jugador pueda memorizarlas y vuelvo 
+					//a quitar el icono, deseleccionar, y resetear variables
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
@@ -229,15 +238,14 @@ public class Ejercicio9_image extends JFrame {
 							botonSeleccionado2.setIcon(null);
 							botonSeleccionado1.setSelected(false);
 							botonSeleccionado2.setSelected(false);
-//							botonSeleccionado1.setOpaque(false);
-//							botonSeleccionado2.setOpaque(false);
 
 							botonSeleccionado1.setEnabled(true);
 							botonSeleccionado2.setEnabled(true);
 							botonSeleccionado1 = null;
 							botonSeleccionado2 = null;
 							selectedButtons = 0;
-							// Desabilita los botones mientras los sseleccionados estan abiertos
+							
+							// habilita los botones para volver a iniciar partida
 							for (int i = 0; i < listaBotones.size(); i++) {
 								listaBotones.get(i).setEnabled(true);
 							}
