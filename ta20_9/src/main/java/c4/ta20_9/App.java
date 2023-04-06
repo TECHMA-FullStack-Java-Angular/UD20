@@ -15,6 +15,11 @@ public class App
 {
     public static void main( String[] args )
     {
-    	Ejercicio9 frame = new Ejercicio9();
+
+    	//Llamada al ejercicio con colores + otros extras
+//    	Ejercicio9 frame = new Ejercicio9();
+    	
+    	//Llamada al ejercicio con images
+    	Ejercicio9_image frame2 = new Ejercicio9_image();
     }
 }
