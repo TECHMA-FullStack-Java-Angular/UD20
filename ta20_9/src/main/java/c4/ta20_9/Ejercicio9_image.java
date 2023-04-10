@@ -174,8 +174,8 @@ public class Ejercicio9_image extends JFrame {
 			//Selecciono el selectedIcon como Icon
 			b.setIcon(b.getSelectedIcon());
 			b.setSelected(true);
-			b.setEnabled(false);//comentar para probar el true
-//			b.setEnabled(true);//si marco setEnabled(true) se ve mejor el icono. Intente editar el metodo pero no lo logre
+//			b.setEnabled(false);//comentar para probar el true
+			b.setEnabled(true);//si marco setEnabled(true) se ve mejor el icono. Intente editar el metodo pero no lo logre
 
 //			b.setEnabled(true);//descomentar para probar
 			//añado seleccion al marcador
@@ -189,8 +189,8 @@ public class Ejercicio9_image extends JFrame {
 			//guardamos el segundo boton seleccionado, contamos el intento y reflejamos en pantalla
 			if (selectedButtons == 2) {
 				botonSeleccionado2 = b;
-				botonSeleccionado2.setEnabled(false);//comentar para probar el true
-//				botonSeleccionado2.setEnabled(true);//descomentar para probar
+//				botonSeleccionado2.setEnabled(false);//comentar para probar el true
+				botonSeleccionado2.setEnabled(true);//descomentar para probar
 				intentos++;
 				lblIntentos.setText("Intentos: " + intentos);
 
