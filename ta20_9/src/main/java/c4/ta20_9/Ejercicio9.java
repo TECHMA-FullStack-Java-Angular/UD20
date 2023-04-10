@@ -51,7 +51,7 @@ public class Ejercicio9 extends JFrame {
 	 */
 	public Ejercicio9() {
 		setTitle("Memory Game");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 515, 682);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(232, 232, 255));
@@ -68,7 +68,7 @@ public class Ejercicio9 extends JFrame {
 		JLabel lblNewLabel = new JLabel("Encontra las parejas de colores");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(80, 30, 346, 14);
+		lblNewLabel.setBounds(80, 30, 346, 20);
 		contentPane.add(lblNewLabel);
 
 		// Inicializar las variables

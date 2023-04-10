@@ -14,10 +14,8 @@ package c4.ta20_9;
 public class App {
 	public static void main(String[] args) {
 
-		// Llamada al ejercicio con colores + otros extras
-		Ejercicio9 frame = new Ejercicio9();
+		BienvenidoFrame memory = new BienvenidoFrame();
 
-		// Llamada al ejercicio con images
-		Ejercicio9_image frame2 = new Ejercicio9_image();
+		
 	}
 }

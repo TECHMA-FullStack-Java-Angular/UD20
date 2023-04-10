@@ -57,6 +57,7 @@ public class Ejercicio9_image extends JFrame {
 	private URL url7;
 	private URL url8;
 
+
 	// Crear el borde
 	Border blackBorder = BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.GRAY);
 
@@ -65,11 +66,12 @@ public class Ejercicio9_image extends JFrame {
 	 */
 	public Ejercicio9_image() {
 		setTitle("Memory Game");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 515, 682);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(232, 232, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -82,7 +84,7 @@ public class Ejercicio9_image extends JFrame {
 		JLabel lblNewLabel = new JLabel("Encontra las parejas");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(80, 30, 346, 14);
+		lblNewLabel.setBounds(80, 24, 346, 20);
 		contentPane.add(lblNewLabel);
 
 		// Inicializar las variables
@@ -121,6 +123,7 @@ public class Ejercicio9_image extends JFrame {
 			url6 = new URL("https://img.icons8.com/arcade/64/null/icons8-cup.png");
 			url7 = new URL("https://img.icons8.com/arcade/64/null/key.png");
 			url8 = new URL("https://img.icons8.com/arcade/64/null/music.png");
+		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -144,6 +147,7 @@ public class Ejercicio9_image extends JFrame {
 		iconList.add(icon7);
 		ImageIcon icon8 = new ImageIcon(url8);
 		iconList.add(icon8);
+		
 
 		// duplico la lista
 		iconListDoble.addAll(iconList);
@@ -156,6 +160,7 @@ public class Ejercicio9_image extends JFrame {
 		//Añado los iconos como SelectedIcon
 		for (int i = 0; i < iconListDoble.size(); i++) {
 			listaBotones.get(i).setSelectedIcon(iconListDoble.get(i));
+			
 	
 		}
 
@@ -210,6 +215,8 @@ public class Ejercicio9_image extends JFrame {
 					botonSeleccionado2.setEnabled(false);
 					botonSeleccionado1.setIcon(null);
 					botonSeleccionado2.setIcon(null);
+					botonSeleccionado1.setBackground(Color.white);
+					botonSeleccionado2.setBackground(Color.white);
 
 					botonSeleccionado1.setBorder(null);
 					botonSeleccionado2.setBorder(null);
@@ -224,6 +231,8 @@ public class Ejercicio9_image extends JFrame {
 					// habilita los botones para volver a seleccionar
 					for (int i = 0; i < listaBotones.size(); i++) {
 						listaBotones.get(i).setEnabled(true);
+						
+				
 					}
 
 					//Mensaje de felicitacion en caso encuentre todos pares
@@ -238,10 +247,11 @@ public class Ejercicio9_image extends JFrame {
 					timer.schedule(new TimerTask() {
 						@Override
 						public void run() {
-							botonSeleccionado1.setIcon(null);
-							botonSeleccionado2.setIcon(null);
+							
 							botonSeleccionado1.setSelected(false);
 							botonSeleccionado2.setSelected(false);
+							botonSeleccionado1.setIcon(null);
+							botonSeleccionado2.setIcon(null);
 
 							botonSeleccionado1.setEnabled(true);
 							botonSeleccionado2.setEnabled(true);
@@ -252,6 +262,8 @@ public class Ejercicio9_image extends JFrame {
 							// habilita los botones para volver a seleccionar
 							for (int i = 0; i < listaBotones.size(); i++) {
 								listaBotones.get(i).setEnabled(true);
+								
+								
 							}
 						}
 					}, 1500);
